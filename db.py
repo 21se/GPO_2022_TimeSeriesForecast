@@ -1,10 +1,12 @@
+import os
+
 import psycopg2
 from psycopg2.extras import DictCursor
 
-DB_NAME = 'rpas'
-DB_USER = 'postgres'
-DB_PWD = '1234'
-DB_HOST = 'localhost'
+DB_NAME = os.getenv('DB_NAME', 'rpas')
+DB_USER = os.getenv('DB_USER', 'postgres')
+DB_PWD = os.getenv('DB_PWD', '1234')
+DB_HOST = os.getenv('DB_HOST', 'localhost')
 
 
 def get_db_handles(dbname, user, password, host):
@@ -100,4 +102,3 @@ def get_train_test_query(data_type):
         ORDER BY
             D.ID DESC         
         """
-

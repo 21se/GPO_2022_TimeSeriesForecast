@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, flash, url_for, Response, jsonify
+from flask import Flask, render_template, request, flash, jsonify
+
 import db
 
 app = Flask(__name__)
