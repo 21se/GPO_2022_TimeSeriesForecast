@@ -82,11 +82,14 @@ def get_data_values(data_type, data_id):
     if data_type not in ('train', 'test', 'raw', 'prediction'):
         return 'Wrong data_type', 400
 
-    if
-
     data_values = db.get_data_values(data_type, data_id)
 
     return jsonify(data_values)
+
+
+@app.route('/ping')
+def ping():
+    return 'OK', 200
 
 
 if __name__ == '__main__':
