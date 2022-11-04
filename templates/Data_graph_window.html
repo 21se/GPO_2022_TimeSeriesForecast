@@ -1,0 +1,60 @@
+<html>
+  <head>
+     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js" type="text/javascript"></script>
+     <script>
+
+        function getDataFromStorage() {
+       return JSON.parse(localStorage.getItem('Do'));
+   }
+
+   function getDataFromDB(data_type, data_id) {
+       var response = httpGet("/data_values/" + data_type + "/" + data_id)
+       return JSON.parse(response);
+   }
+
+   function httpGet(url) {
+       var xmlHttp = new XMLHttpRequest();
+       xmlHttp.open("GET", url, false);
+       xmlHttp.send(null);
+       return xmlHttp.responseText;
+   }
+
+     anychart.onDocumentReady(function () {
+
+         var TryData = new Array();
+         var Data = new Array();
+         {% if not (data_type and data_id) %}
+         {{ 'Data = getDataFromStorage();' }}
+         {% else %}
+         {{ "Data = getDataFromDB(\"" | safe + data_type + "\", " | safe + data_id + ");"}}
+         {% endif %}
+
+       for(var i =0; i<Data.length; i++)
+           {
+            TryData[i]= new Array(1);
+            TryData[i] = [i, Data[i]];
+           }
+
+       // create a line chart
+       chart = anychart.line();
+
+       // set the data
+       chart.data(TryData);
+
+       // enable the crosshair
+       chart.crosshair(true);
+
+       // set the container id
+       chart.container("container");
+
+       // initiate drawing the chart
+       chart.draw();
+
+   });
+
+  </script>
+  </head>
+  <body>
+    <div id="container" style="width: max-width; height: max-height;"></div>
+  </body>
+</html>
