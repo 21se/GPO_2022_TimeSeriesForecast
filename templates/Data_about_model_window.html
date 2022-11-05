@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>Типы моделей</title>
-  </head>
-  <h1>Модели нейронных сетей</h1>
-  <link rel="stylesheet" href="../static/style.css" type="text/css"/>
-  <body>
-    <div>
-        <form action={{ url_for('about') }}>
-            <button class="button">LSTM</button>
-            <input type="hidden" name="model" value="LSTM" />
-        </form>
-        <br>
-        <!--<a  href="LSTM.html" class="button">LSTM</a>-->
-    </div>
+<head>
+    <title>Типы моделей</title>
+</head>
+<h1>Модели нейронных сетей</h1>
+<link rel="stylesheet" href="../static/style.css" type="text/css"/>
+<body>
+<div>
+    <form action={{ url_for('about') }}>
+        <button class="button">LSTM</button>
+        <input type="hidden" name="model" value="LSTM"/>
+    </form>
+    <br>
+    <!--<a  href="LSTM.html" class="button">LSTM</a>-->
+</div>
 
-    <div>
-        <form action={{ url_for('about') }}>
-           <button class="button">TCN</button>
-            <input type="hidden" name="model" value="TCN" />
-        </form>
-        <br>
-        <!--<a  href="TCN.html" class="button">TCN</a>-->
-    </div>
+<div>
+    <form action={{ url_for('about') }}>
+        <button class="button">TCN</button>
+        <input type="hidden" name="model" value="TCN"/>
+    </form>
+    <br>
+    <!--<a  href="TCN.html" class="button">TCN</a>-->
+</div>
 
-    <div>
-        <form action={{ url_for('about') }}>
-           <button class="button">MLP</button>
-            <input type="hidden" name="model" value="MLP" />
-        </form>
-        <br>
-        <!--<a  href="MLP.html" class="button">MLP</a>-->
-    </div>
+<div>
+    <form action={{ url_for('about') }}>
+        <button class="button">MLP</button>
+        <input type="hidden" name="model" value="MLP"/>
+    </form>
+    <br>
+    <!--<a  href="MLP.html" class="button">MLP</a>-->
+</div>
 
-    <div>
-        <form action={{ url_for('main_window') }}>
-            <button class="button">Главная страница</button>
-        </form>
-        <!--<a  href="Main_window.html" class="button">Главная страница</a>-->
-    </div> 
+<div>
+    <form action={{ url_for('main_window') }}>
+        <button class="button">Главная страница</button>
+    </form>
+    <!--<a  href="Main_window.html" class="button">Главная страница</a>-->
+</div>
 
-  </body>
+</body>
 </html>

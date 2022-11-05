@@ -1,68 +1,75 @@
 <!DOCTYPE HTML>
 <html>
-   <head>
-      <meta charset="utf-8" />
-      <title>Визуализация данных в виде графиков</title>
-      <link rel="stylesheet" href="../static/style.css" type="text/css"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="../static/style.css" type="text/css"/>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-   </head>
-   <body>
-      <div>
-         <form action={{ url_for('about') }}>
-         <button class="button">Вернуться на страницу с моделями</button>
-         </form>
-      </div>
-      <div class="container" style="margin-bottom: 30px">
-         <h2 class="text-center mt-4 mb-4">Визуальное представление данных скважин</h2>
+<head>
+    <meta charset="utf-8"/>
+    <title>Визуализация данных в виде графиков</title>
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+<div>
+    <form action={{ url_for('about') }}>
+        <button class="button">Вернуться на страницу с моделями</button>
+    </form>
+</div>
+<div class="container" style="margin-bottom: 30px">
+    <h2 class="text-center mt-4 mb-4">Визуальное представление данных скважин</h2>
 
-      <div class="container">
-         <div class="card">
+    <div class="container">
+        <div class="card">
             <div class="card-header">
-               <b1 style="font-size: 200%; font-family: Verdana;">Выберите необходимую скважину из Excel.<br></b1>
+                <b1 style="font-size: 200%; font-family: Verdana;">Выберите необходимую скважину из Excel.<br></b1>
             </div>
             <div class="card-body">
-                   <a class="text-center mt-4 mb-4 ">Внимание! Вы можете открыть несколько окон с графиками. Если при выборе скважины ссылки на графики не появились, то необходимо подождать. При слишком долгом ожидании стоит обратиться к разработчикам.</a>
+                <a class="text-center mt-4 mb-4 ">Внимание! Вы можете открыть несколько окон с графиками. Если при
+                    выборе скважины ссылки на графики не появились, то необходимо подождать. При слишком долгом ожидании
+                    стоит обратиться к разработчикам.</a>
                 <br>
                 <input style="margin-top: 10px" type="file" id="excel_file"/>
-               <p><a  id = "first_column" style="display:none;" href="#nul"> Открыть график "Давление до УР" в новом окне</a> </p>
-               <p><a  id = "second_column" style="display:none;" href="#nul"> Открыть график "Давление после УР" в новом окне</a> </p>
-               <p><a  id = "third_column" style="display:none;" href="#nul"> Открыть график "Температура в ТП до УР" в новом окне</a> </p>
-               <p><a  id = "fourth_column" style="display:none;" href="#nul"> Открыть график "Расход в ТП до УР" в новом окне</a> </p>
+                <p><a id="first_column" style="display:none;" href="#nul"> Открыть график "Давление до УР" в новом
+                    окне</a></p>
+                <p><a id="second_column" style="display:none;" href="#nul"> Открыть график "Давление после УР" в новом
+                    окне</a></p>
+                <p><a id="third_column" style="display:none;" href="#nul"> Открыть график "Температура в ТП до УР" в
+                    новом окне</a></p>
+                <p><a id="fourth_column" style="display:none;" href="#nul"> Открыть график "Расход в ТП до УР" в новом
+                    окне</a></p>
             </div>
-         </div>
-      </div>
-      <br>
-                    {% with messages = get_flashed_messages() %}
-              {% if messages %}
-                {% for message in messages %}
-                    <p style="color:black;font-size:24pt" align="center">{{ message }}</p>
-                {% endfor %}
-              {% endif %}
-            {% endwith %}
-            {% block body %}{% endblock %}
-                      <div style="display: inline-flex">
-                  <form action={{ url_for('data') }}>
-                  <button class="button">Исходные данные</button>
-                      <input type="hidden" name="type" value="raw" />
-                  </form>
-                  <form action={{ url_for('data') }}>
-                  <button class="button">Тестовые данные</button>
-                      <input type="hidden" name="type" value="test" />
-                  </form>
-                  <form action={{ url_for('data') }}>
-                  <button class="button">Обучающие данные</button>
-                      <input type="hidden" name="type" value="train" />
-                  </form>
-                  <form action={{ url_for('data') }}>
-                  <button class="button">Предсказанные данные</button>
-                      <input type="hidden" name="type" value="prediction" />
-                  </form>
-                </div>
-               </div>
-      <div id="excel_data" class="mt-5"></div>
-      <script type="text/javascript" src="../static/java_script_excel_to_array.js"> </script>
-   </body>
+        </div>
+    </div>
+    <br>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color:black;font-size:24pt" align="center">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <div style="display: inline-flex">
+        <form action={{ url_for('data') }}>
+            <button class="button">Исходные данные</button>
+            <input type="hidden" name="type" value="raw"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Тестовые данные</button>
+            <input type="hidden" name="type" value="test"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Обучающие данные</button>
+            <input type="hidden" name="type" value="train"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Предсказанные данные</button>
+            <input type="hidden" name="type" value="prediction"/>
+        </form>
+    </div>
+</div>
+<div id="excel_data" class="mt-5"></div>
+<script type="text/javascript" src="../static/java_script_excel_to_array.js"></script>
+</body>
 </html>

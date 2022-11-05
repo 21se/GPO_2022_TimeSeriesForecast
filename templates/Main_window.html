@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Приветственная страница</title>
     <link rel="stylesheet" href="../static/style.css" type="text/css"/>
-  </head>
-  <h1>Главная страница</h1>
-  <body>
-    <div>
-      <form action={{ url_for('about') }}>
+</head>
+<h1>Главная страница</h1>
+<body>
+<div>
+    <form action={{ url_for('about') }}>
         <button class="button" id="OpenModelsPageBTM">Модели нейронных сетей</button>
-      </form>
-      <br>
-      <!--<a href="Data_about_model_window.html" class="button" id="OpenModelsPageBTM">
-        Модели нейронных сетей</a>-->
-    </div>
+    </form>
+    <br>
+    <!--<a href="Data_about_model_window.html" class="button" id="OpenModelsPageBTM">
+      Модели нейронных сетей</a>-->
+</div>
 
-    <div>
-      <form action={{ url_for('data') }}>
+<div>
+    <form action={{ url_for('data') }}>
         <button class="button" id="OpenGraphsBTM">Открыть страницу визуализации данных</button>
-      </form>
-      <!--<a href="Kust_Choice.html" class="button" id="OpenGraphsBTM">
-        Открыть страницу визуализации данных в виде графиков</a>-->
-    </div>
+    </form>
+    <!--<a href="Kust_Choice.html" class="button" id="OpenGraphsBTM">
+      Открыть страницу визуализации данных в виде графиков</a>-->
+</div>
 </body>
-  </html>
+</html>
