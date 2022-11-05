@@ -35,12 +35,13 @@
   <div id="main">
     <h1>Визуальное представление данных скважин</h1>
 
-    <div class="header">
+    <div class="header" style="border-bottom: 0px">
         <div style="margin-top: 15px">
             <p style="font-size: 32px; vertical-align: middle">Выберите необходимую скважину из Excel.</p>
         </div>
     </div>
-    <div class="header" style="background: #ffffff; margin-top: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; height: 130px">
+
+    <div class="header" id="main-header">
         <div style="margin-left: 20px; margin-top: 20px; margin-right: 20px">
             <p style="text-indent: 0px;">Внимание! Вы можете открыть несколько окон с графиками. Если при
                 выборе скважины ссылки на графики не появились, то необходимо подождать. При слишком долгом ожидании
@@ -49,7 +50,8 @@
 
         </div>
     </div>
-    <div class="header" id="footer" >
+
+    <div class="header" id="footer">
         <div style="margin-left: 20px; margin-top: 20px; margin-right: 20px;">
             <p style="text-indent: 0px; font-size: 18px; display:inline-block">Открыть график в новом окне: </p>
             <a id="first_column" style="margin-left: 30px" href="#nul">Давление до УР</a>
@@ -59,7 +61,6 @@
         </div>
     </div>
     <br>
-  <div style="height: auto; margin-top: 35px; margin-bot: 5px; text-align: center">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -67,11 +68,9 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-    {% block body %}{% endblock %}
-    <div style="display: inline-flex"> </div>
+    {% block body %}
+    {% endblock %}
     <div id="excel_data" class="mt-5"></div>
-  </div>
-
 <script type="text/javascript" src="../static/java_script_excel_to_array.js"></script>
 </body>
 </html>

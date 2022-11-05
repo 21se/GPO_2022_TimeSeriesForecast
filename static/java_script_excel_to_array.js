@@ -4,19 +4,21 @@ excel_file.addEventListener('change', (event) => {
 
     if(!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type))
     {
-        document.getElementById('excel_data').innerHTML = '<div class="alert alert-danger">Only .xlsx or .xls file format are allowed</div>';
+        alert("Поддерживаются только .xlsx и .xls форматы файлов")
 
         excel_file.value = '';
 
         return false;
     }
-    var texts = document.querySelectorAll('p');
+    var texts = document.querySelectorAll('a');
     /*for(var i = 0; i<texts.length; i++)
             {
                     texts[i].
             }*/
-
     document.getElementById('footer').style.visibility = 'hidden';
+    document.getElementById('main-header').style.borderBottomLeftRadius = '15px'
+    document.getElementById('main-header').style.borderBottomRightRadius = '15px'
+    document.getElementById('main-header').style.borderBottom = '2px'
 
     var reader = new FileReader();
 
@@ -108,6 +110,9 @@ excel_file.addEventListener('change', (event) => {
                 texts[i].style.display = '';
         }*/
         document.getElementById('footer').style.visibility = 'visible';
+        document.getElementById('main-header').style.borderBottomLeftRadius = '0px'
+        document.getElementById('main-header').style.borderBottomRightRadius = '0px'
+        document.getElementById('main-header').style.borderBottom = '0px'
     }
 
 });

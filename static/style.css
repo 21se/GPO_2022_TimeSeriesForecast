@@ -41,7 +41,6 @@
 #back-button {
     bottom: 5%;
     position: absolute;
-    color: #0979DA;
 }
 
 #main {
@@ -81,25 +80,29 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     vertical-align: middle;
+}
+
+#main-header {
+    background: #ffffff;
+    margin-top: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 130px;
 }
 
 #footer {
     margin-top: 0px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
     height: 75px;
     visibility: hidden;
-}
-
-
-
-#container {
-
 }
 
 #customers {
