@@ -5,48 +5,46 @@
     <title>Визуализация данных в виде графиков</title>
     <link rel="stylesheet" href="../static/style.css" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-
 </head>
 <body>
+    <div id="sidebar">
+        <form action={{ url_for('data') }}>
+            <button class="button">Назад</button>
+        </form>
+    </div>
+    <div id="main">
+        <div style="margin-top: 15px; position: absolute">
+            <table id="customers">
+                <tbody align="center">
+                <tr>
+                    {% for key in page_data[0] %}
+                        {% if key == 'url' %}
+                            <th>График</th>
+                        {% else %}
+                            <th>{{ key }}</th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% for data in page_data %}
+                    <tr>
+                        {% for col in data %}
+                            {% if col == 'url' %}
+                                <td><a href={{ data[col] }} target="_blank">Просмотр</a></td>
+                            {% else %}
+                                <td {{ (' title="' + data[col]['title'] + '"') | safe if 'title' in data[col] else '' }}>
+                                    <a {{ (' target="_blank" href=' + data[col]['url']) if 'url' in data[col] else '' }}>{{ data[col]['text'] }}</a>
+                                </td>
 
-
-<div>
-    <form action={{ url_for('data') }}>
-        <button class="button">Назад</button>
-    </form>
-</div>
-<div class="container">
-    <table style="width: 50%;float:left;table-layout: fixed" border="3" cellpadding="2">
-        <tbody align="center">
-        <tr>
-            {% for key in page_data[0] %}
-                {% if key == 'url' %}
-                    <td>График</td>
-                {% else %}
-                    <td>{{ key }}</td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        {% for data in page_data %}
-            <tr>
-                {% for col in data %}
-                    {% if col == 'url' %}
-                        <td><a href={{ data[col] }} target="_blank">Просмотр</a></td>
-                    {% else %}
-                        <td {{ (' title="' + data[col]['title'] + '"') | safe if 'title' in data[col] else '' }}>
-                            <a {{ (' target="_blank" href=' + data[col]['url']) if 'url' in data[col] else '' }}>{{ data[col]['text'] }}</a>
-                        </td>
-
-                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
-
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
