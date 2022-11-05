@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, jsonify
-from os import getenv
+import os
 
 import db
 
