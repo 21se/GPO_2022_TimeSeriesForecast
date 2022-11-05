@@ -10,15 +10,15 @@ DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_PORT = os.getenv('DB_PORT', 5432)
 
 
-def get_db_handles(dbname, user, password, host, port):
-    connection = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
+def get_db_handles():
+    connection = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PWD, host=DB_HOST, port=DB_PORT)
     cursor = connection.cursor(cursor_factory=DictCursor)
 
     return connection, cursor
 
 
 def get_data(data_type):
-    conn, cursor = get_db_handles(DB_NAME, DB_USER, DB_PWD, DB_HOST, DB_PORT)
+    conn, cursor = get_db_handles()
 
     query = ''
     if data_type == 'raw':
@@ -36,7 +36,7 @@ def get_data(data_type):
 
 
 def get_data_values(data_type, data_id):
-    conn, cursor = get_db_handles(DB_NAME, DB_USER, DB_PWD, DB_HOST)
+    conn, cursor = get_db_handles()
 
     query = f"""
         SELECT 
