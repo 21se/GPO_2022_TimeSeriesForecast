@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, flash, jsonify
+from os import getenv
 
 import db
 
 app = Flask(__name__)
 app.secret_key = '3228'
+
+FLASK_RUN_HOST = os.getenv('FLASK_RUN_HOST', '0.0.0.0')
+FLASK_RUN_PORT = os.getenv('FLASK_RUN_PORT', 5000)
 
 
 @app.route('/')
@@ -94,4 +98,4 @@ def ping():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=FLASK_RUN_HOST, port=FLASK_RUN_PORT)
