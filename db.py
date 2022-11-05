@@ -7,17 +7,18 @@ DB_NAME = os.getenv('DB_NAME', 'rpas')
 DB_USER = os.getenv('DB_USER', 'postgres')
 DB_PWD = os.getenv('DB_PWD', '1234')
 DB_HOST = os.getenv('DB_HOST', 'localhost')
+DB_PORT = os.getenv('DB_PORT', 5432)
 
 
-def get_db_handles(dbname, user, password, host):
-    connection = psycopg2.connect(dbname=dbname, user=user, password=password, host=host)
+def get_db_handles(dbname, user, password, host, port):
+    connection = psycopg2.connect(dbname=dbname, user=user, password=password, host=host, port=port)
     cursor = connection.cursor(cursor_factory=DictCursor)
 
     return connection, cursor
 
 
 def get_data(data_type):
-    conn, cursor = get_db_handles(DB_NAME, DB_USER, DB_PWD, DB_HOST)
+    conn, cursor = get_db_handles(DB_NAME, DB_USER, DB_PWD, DB_HOST, DB_PORT)
 
     query = ''
     if data_type == 'raw':
