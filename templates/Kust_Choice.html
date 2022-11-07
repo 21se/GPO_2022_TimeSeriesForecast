@@ -3,74 +3,72 @@
 <head>
     <meta charset="utf-8"/>
     <title>Визуализация данных в виде графиков</title>
-    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <div id="sidebar">
-    <form action={{ url_for('data') }}>
-        <button class="button">Исходные данные</button>
-        <input type="hidden" name="type" value="raw"/>
-    </form>
-    <form action={{ url_for('data') }}>
-        <button class="button">Тестовые данные</button>
-        <input type="hidden" name="type" value="test"/>
-    </form>
-    <form action={{ url_for('data') }}>
-        <button class="button">Обучающие данные</button>
-        <input type="hidden" name="type" value="train"/>
-    </form>
-    <form action={{ url_for('data') }}>
-        <button class="button">Предсказанные данные</button>
-        <input type="hidden" name="type" value="prediction"/>
-    </form>
-    <form action={{ url_for('about') }}>
-      <button class="button" id="back-button">Вернуться на страницу с моделями</button>
-    </form>
-  </div>
+    <aside>
+        <form action={{ url_for('data') }}>
+            <button class="button">Исходные данные</button>
+            <input type="hidden" name="type" value="raw"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Тестовые данные</button>
+            <input type="hidden" name="type" value="test"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Обучающие данные</button>
+            <input type="hidden" name="type" value="train"/>
+        </form>
+        <form action={{ url_for('data') }}>
+            <button class="button">Предсказанные данные</button>
+            <input type="hidden" name="type" value="prediction"/>
+        </form>
+        <form action={{ url_for('about') }}>
+          <button class="button back">Вернуться на страницу с моделями</button>
+        </form>
+    </aside>
+    <main style="padding-top: 1vw">
+        <h1 style="font-size: 2vw">Визуальное представление данных скважин</h1>
 
-  <div id="main">
-    <h1>Визуальное представление данных скважин</h1>
-
-    <div class="header" style="border-bottom: 0px">
-        <div style="margin-top: 15px">
-            <p style="font-size: 32px; vertical-align: middle">Выберите необходимую скважину из Excel.</p>
+        <div class="kust choice header" style="border-bottom: 0px">
+            <div style="padding-top: 1vw">
+                <p>Выберите необходимую скважину из Excel.</p>
+            </div>
         </div>
-    </div>
 
-    <div class="header" id="main-header">
-        <div style="margin-left: 20px; margin-top: 20px; margin-right: 20px">
-            <p style="text-indent: 0px;">Внимание! Вы можете открыть несколько окон с графиками. Если при
-                выборе скважины ссылки на графики не появились, то необходимо подождать. При слишком долгом ожидании
-                стоит обратиться к разработчикам.</p>
-            <input style="margin-top: 10px" type="file" id="excel_file"/>
-
+        <div class="kust choice main" id="main">
+            <div style="padding-left: 2vw; padding-right: 2vw">
+                <p style="text-indent: 0px;">Внимание! Вы можете открыть несколько окон с графиками. Если при
+                    выборе скважины ссылки на графики не появились, то необходимо подождать. При слишком долгом ожидании
+                    стоит обратиться к разработчикам.
+                </p>
+                <input style="padding-top: 0.5vw" type="file" id="excel_file"/>
+            </div>
         </div>
-    </div>
 
-    <div class="header" id="footer">
-        <div style="margin-left: 20px; margin-top: 20px; margin-right: 20px;">
-            <p style="text-indent: 0px; font-size: 18px; display:inline-block">Открыть график в новом окне: </p>
-            <a id="first_column" style="margin-left: 30px" href="#nul">Давление до УР</a>
-            <a id="second_column" style="margin-left: 30px" href="#nul">Давление после УР</a>
-            <a id="third_column" style="margin-left: 30px" href="#nul">Температура в ТП до УР</a>
-            <a id="fourth_column" style="margin-left: 30px" href="#nul">Расход в ТП до УР</a>
+        <div class="kust choice footer" id="footer">
+            <div style="padding-left: 2vw; padding-right: 2vw;">
+                <p style="text-indent: 0px; display:inline-block">Открыть график в новом окне: </p>
+                <a id="first_column"  href="#nul">Давление до УР</a>
+                <a id="second_column" href="#nul">Давление после УР</a>
+                <a id="third_column"  href="#nul">Температура в ТП до УР</a>
+                <a id="fourth_column" href="#nul">Расход в ТП до УР</a>
+            </div>
         </div>
-    </div>
-    <br>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p style="color:black; font-size: 24pt; text-align: center" align="center">{{ message }}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    {% block body %}
-    {% endblock %}
-    <div id="excel_data" class="mt-5"></div>
-<script type="text/javascript" src="../static/java_script_excel_to_array.js"></script>
+        <br>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="font-size: 2vw; text-align: center" align="center">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block body %}
+        {% endblock %}
+        <div id="excel_data" class="mt-5"></div>
+    </main>
+    <script type="text/javascript" src="../static/java_script_excel_to_array.js"></script>
 </body>
 </html>

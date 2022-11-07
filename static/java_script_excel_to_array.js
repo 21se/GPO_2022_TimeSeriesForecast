@@ -16,9 +16,9 @@ excel_file.addEventListener('change', (event) => {
                     texts[i].
             }*/
     document.getElementById('footer').style.visibility = 'hidden';
-    document.getElementById('main-header').style.borderBottomLeftRadius = '15px'
-    document.getElementById('main-header').style.borderBottomRightRadius = '15px'
-    document.getElementById('main-header').style.borderBottom = '2px'
+    document.getElementById('main').style.borderBottomLeftRadius = '1vw'
+    document.getElementById('main').style.borderBottomRightRadius = '1vw'
+    document.getElementById('main').style.borderBottom = '0.1vw'
 
     var reader = new FileReader();
 
@@ -110,9 +110,8 @@ excel_file.addEventListener('change', (event) => {
                 texts[i].style.display = '';
         }*/
         document.getElementById('footer').style.visibility = 'visible';
-        document.getElementById('main-header').style.borderBottomLeftRadius = '0px'
-        document.getElementById('main-header').style.borderBottomRightRadius = '0px'
-        document.getElementById('main-header').style.borderBottom = '0px'
+        document.getElementById('main').style.borderBottomLeftRadius = '0px'
+        document.getElementById('main').style.borderBottomRightRadius = '0px'
+        document.getElementById('main').style.borderBottom = '0px'
     }
-
 });

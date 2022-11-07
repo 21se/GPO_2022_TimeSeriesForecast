@@ -3,21 +3,18 @@
 <head>
     <meta charset="utf-8"/>
     <title>Визуализация данных в виде графиков</title>
-    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-<!--          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
-    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="../static/style.css" type="text/css"/>
 </head>
 <body>
-    <div id="sidebar">
+    <aside>
         <form action={{ url_for('data') }}>
             <button class="button">Назад</button>
         </form>
-    </div>
-    <div id="main">
-        <div style="margin-top: 15px; position: absolute;">
-            <table id="customers" style="width: 95%; margin: auto;">
+    </aside>
+    <main style="margin-right: 0; margin-left: 25vw">
+        <div>
+            <table id="customers" style="width: 100%; margin: auto;">
                 <tbody align="center">
                 <tr>
                     {% for key in page_data[0] %}
@@ -37,7 +34,6 @@
                                 <td {{ (' title="' + data[col]['title'] + '"') | safe if 'title' in data[col] else '' }}>
                                     <a {{ (' target="_blank" href=' + data[col]['url']) if 'url' in data[col] else '' }}>{{ data[col]['text'] }}</a>
                                 </td>
-
                             {% endif %}
                         {% endfor %}
                     </tr>
@@ -45,6 +41,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    <main>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </body>
 </html>
